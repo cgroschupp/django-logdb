@@ -3,7 +3,7 @@ import time
 
 from django.db import models
 from django.core.serializers.json import DjangoJSONEncoder
-from django.utils import simplejson as json
+import json
 
 def get_timestamp(date_time):
     """

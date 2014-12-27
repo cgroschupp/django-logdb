@@ -1,7 +1,7 @@
 import datetime
 
 from django.http import HttpResponseBadRequest, HttpResponse
-from django.utils import simplejson
+import json
 
 from djangologdb.utils import get_datetime
 from djangologdb.models import LogEntry
@@ -56,4 +56,4 @@ def datasets(request):
     except:
         return HttpResponseBadRequest()
 
-    return HttpResponse(simplejson.dumps(result), mimetype='text/json')
+    return HttpResponse(json.dumps(result), content_type='text/json')

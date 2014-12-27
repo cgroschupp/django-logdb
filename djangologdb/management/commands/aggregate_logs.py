@@ -3,7 +3,7 @@ import logging
 import datetime
 
 from django.core.management.base import NoArgsCommand
-from django.utils.hashcompat import md5_constructor
+import hashlib
 from django.db.models import F
 from django.db import transaction
 
@@ -45,7 +45,7 @@ class Command(NoArgsCommand):
                 'name': log_entry.name,
                 'path': log_entry.path,
             }
-            checksum = md5_constructor(str(entries))
+            checksum = hashlib.md5(str(entries))
 
             entries.update({
                 'first_seen': log_entry.created,

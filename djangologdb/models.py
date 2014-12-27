@@ -136,7 +136,7 @@ class LogQuerySet(QuerySet):
 
 class LogManager(models.Manager):
 
-    def get_query_set(self):
+    def get_queryset(self):
         return LogQuerySet(self.model)
 
     def get_datasets(self, *args, **kwargs):
