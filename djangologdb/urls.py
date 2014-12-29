@@ -8,8 +8,3 @@ from djangologdb import views
 urlpatterns = patterns('',
     (r'datasets/$', admin.site.admin_view(views.datasets)),
 )
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': djangologdb_settings.MEDIA_ROOT}),
-    )

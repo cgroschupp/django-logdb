@@ -1,13 +1,14 @@
 {% extends "admin/change_list.html" %}
-{% load i18n djangologdb_tags %}
+{% load i18n staticfiles %}
 
 {% block extrahead %}
 	{{ block.super }}
 
 	{% block djangologdb-jslibs %}
-	<!--[if IE]><script type="text/javascript" src="{% djangologdb_media_url %}js/excanvas.min.js"></script><![endif]-->
-	<script type="text/javascript" src="{% djangologdb_media_url %}js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="{% djangologdb_media_url %}js/jquery.flot-0.6.min.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{% static "admin/js/excanvas.min.js"%}"></script><![endif]-->
+	<script type="text/javascript" src="{% static "admin/js/jquery.flot.init.js" %}"></script>
+	<script type="text/javascript" src="{% static "admin/js/jquery.flot.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "admin/js/jquery.flot.time.min.js" %}"></script>
 	{% endblock %}
 	
 	{% block djangologdb-jsinit %}
@@ -35,17 +36,19 @@
 			interval_days: {{ djangologdb_settings.INTERVAL.days }},{% endifequal %}
 			aggregate: '{{ aggregate }}'
 		};
-
-		$.getJSON('../datasets/', params, function(datasets) {
-			var data = [];
-
-			$.each(datasets, function(key, val) {
-				data.push(datasets[key]);
-			});
+		$.ajax({
+			url: '../datasets/',
+			data: params,
+			success: function(datasets) {
+				var data = [];
+				$.each(datasets, function(key, val) {
+					data.push(datasets[key]);
+				});
 			
-			$.plot($("#chart"), data, options);
+				$.plot($("#chart"), data, options);
+			}
 		});
-	})(jQuery.noConflict());
+	})(django.jQuery.noConflict());
 	</script>
 	{% endblock %}
 {% endblock %}

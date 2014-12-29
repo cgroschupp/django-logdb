@@ -2,7 +2,7 @@ include README.rst
 include CHANGES.rst
 include LICENSE
 include ez_setup.py
-include djangologdb/media/js/*.js
+include djangologdb/static/admin/js/*.js
 include djangologdb/templates/admin/djangologdb/*.html
 include djangologdb/templates/admin/djangologdb/logaggregate/*.html
 include djangologdb/templates/admin/djangologdb/logentry/*.html

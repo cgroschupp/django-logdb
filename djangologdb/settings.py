@@ -37,6 +37,3 @@ LEVEL_COLORS = getattr(settings, 'LOGDB_LEVEL_COLORS',
         logging.CRITICAL: '#e9a8ab',
     }
 )
-
-MEDIA_ROOT = getattr(settings, 'LOGDB_MEDIA_ROOT', os.path.join(djangologdb.__path__[0], 'media'))
-MEDIA_URL = getattr(settings, 'LOGDB_MEDIA_URL', '/admin/djangologdb/media/')
