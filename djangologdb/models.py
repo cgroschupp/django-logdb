@@ -8,6 +8,7 @@ from django.db.models.query import QuerySet
 
 from djangologdb import settings as djangologdb_settings
 from djangologdb.utils import get_timestamp, JSONField, TupleField
+import traceback
 
 LOG_LEVELS = (
     (logging.INFO, 'Info'),
@@ -189,9 +190,14 @@ class LogManager(models.Manager):
             except:
                 msg = u'(django-logdb: Message encoding error)'
 
+        if not record.exc_text:
+            exc_text = traceback.format_exc()
+        else:
+            exc_text = record.exc_text
+
         log_entry = LogEntry.objects.create(
             args=tuple(args),
-            exc_text=record.exc_text,
+            exc_text=exc_text,
             filename=record.filename,
             function_name=record.funcName,
             level=record.levelno,
