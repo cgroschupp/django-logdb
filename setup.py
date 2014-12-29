@@ -26,7 +26,7 @@ setup(
     #    'Django>=1.1',
     #],
     include_package_data=True,
-    packages=['djangologdb'],
+    packages = find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Django',
