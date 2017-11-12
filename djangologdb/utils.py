@@ -21,7 +21,6 @@ def get_datetime(timestamp):
 
 
 class JSONField(models.TextField):
-    __metaclass__ = models.SubfieldBase
 
     def to_python(self, value):
         if isinstance(value, basestring) and value:
@@ -41,7 +40,6 @@ class JSONField(models.TextField):
 
 
 class TupleField(models.TextField):
-    __metaclass__ = models.SubfieldBase
 
     def to_python(self, value):
         if value is None:
