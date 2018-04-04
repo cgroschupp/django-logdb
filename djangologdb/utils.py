@@ -20,7 +20,9 @@ def get_datetime(timestamp):
     return datetime.datetime.fromtimestamp(int(timestamp / 1000))
 
 
-class JSONField(models.TextField):
+class JSONField(models.Field):
+    def get_internal_type(self):
+        return "TextField"
 
     def to_python(self, value):
         if isinstance(value, basestring) and value:
