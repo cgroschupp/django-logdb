@@ -39,7 +39,9 @@ class JSONField(models.TextField):
         return super(JSONField, self).get_db_prep_save(value, connection=connection)
 
 
-class TupleField(models.TextField):
+class TupleField(models.Field):
+    def get_internal_type(self):
+        return "TextField"
 
     def to_python(self, value):
         if value is None:
